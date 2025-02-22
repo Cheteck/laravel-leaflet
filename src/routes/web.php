@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Ginocampra\LaravelLeaflet\Http\Controllers\MapController;
+use IJIDeals\Laraleaflet\Http\Controllers\MapController;
 
 Route::get('/map', [MapController::class, 'index']);
+Route::get('/geocode', [MapController::class, 'geocode']);
+Route::get('/route', [MapController::class, 'calculateRoute']);

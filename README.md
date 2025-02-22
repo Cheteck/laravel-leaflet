@@ -1,45 +1,45 @@
-## Laravel Leaflet Package
+## Package Laravel Leaflet
 
-[![Laravel 7|8|9|10](https://img.shields.io/badge/Laravel-8|9|10-orange.svg)](http://laravel.com)
-[![Latest Stable Version](https://img.shields.io/packagist/v/ginocampra/laravel-leaflet)](https://packagist.org/packages/ginocampra/laravel-leaflet)
-[![Total Downloads](https://poser.pugx.org/ginocampra/laravel-leaflet/downloads.png)](https://packagist.org/packages/ginocampra/laravel-leaflet)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/ginocampra/laravel-leaflet)
+[![Laravel 10|11](https://img.shields.io/badge/Laravel-10|11-orange.svg)](http://laravel.com)
+[![Latest Stable Version](https://img.shields.io/packagist/v/ijideals/laravel-leaflet)](https://packagist.org/packages/ijideals/laravel-leaflet)
+[![Total Downloads](https://poser.pugx.org/ijideals/laravel-leaflet/downloads.png)](https://packagist.org/packages/ijideals/laravel-leaflet)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://packagist.org/packages/ijideals/laravel-leaflet)
 
-Allows you to create pages with Leaflet maps in an integrated way with Laravel.
+Permet de créer des pages avec des cartes Leaflet de manière intégrée avec Laravel.
 
-How to Install:
+Comment installer :
 
-Install a basic Laravel Project.
+Installer un projet Laravel de base.
 
 ```bash
-composer create-project laravel/laravel:^8.0 example-app
+composer create-project laravel/laravel:^10.0 example-app
  
 cd example-app
 ```
 
-Run this command to install the package and configure the Laravel Project
+Exécuter cette commande pour installer le paquet et configurer le projet Laravel
 
 ```bash
-composer require ginocampra/laravel-leaflet
+composer require ijideals/laravel-leaflet
 ```
 
-Run the server
+Exécuter le serveur
 
 ```bash
 php artisan serve
 ```
 
-Open you browser "http://127.0.0.1:8000/map"
+Ouvrez votre navigateur "http://127.0.0.1:8000/map"
 
-You will see:
+Vous verrez :
 
-<img src="https://github.com/ginocampra/laravel-leaflet/blob/master/images/itworks.png" alt="LaravelLeaflet" height="350">
+<img src="https://github.com/ginocampra/laravel-leaflet/blob/master/images/itworks.png" alt="LaraLeaflet" height="350">
 
-## Blade Component
+## Composant Blade
 
-You can use this to inject a Leaflet Map in you Blade views
+Vous pouvez utiliser ceci pour injecter une carte Leaflet dans vos vues Blade
 
-Implement $title and $markers in your Controller and pass to view
+Implémenter $title et les données de la carte dans votre contrôleur et les passer à la vue.  Vous pouvez également utiliser les icônes Font Awesome pour personnaliser vos marqueurs. La gestion du dark mode est intégrée.
 
 ```php
 
@@ -53,6 +53,7 @@ Implement $title and $markers in your Controller and pass to view
         'zoomControl' => true,
         'minZoom' => 13,
         'maxZoom' => 18,
+        'darkMode' => true // Active le dark mode
     ];
     $initialMarkers = [
         [
@@ -61,7 +62,8 @@ Implement $title and $markers in your Controller and pass to view
                 'lng' => -47.84753617004771
             ],
             'draggable' => false,
-            'title' => 'Tatuí - SP'
+            'title' => 'Tatuí - SP',
+            'icon' => 'fas fa-map-marker-alt' // Utilisation d'une icône Font Awesome
         ]
     ];
     $initialPolygons = [
@@ -95,13 +97,13 @@ Implement $title and $markers in your Controller and pass to view
             'radius' => 80.68230575309364
         ]
     ];
-    $title = 'Initial Map';
+    $title = 'Carte Initiale';
     
     return view('welcome',compact('options','title','initialMarkers','initialPolygons','initialPolylines','initialRectangles','initialCircles'));
 
 ```
 
-Drop the blade component in the view
+Déposer le composant blade dans la vue
 
 ```php
 
@@ -111,6 +113,6 @@ Drop the blade component in the view
 
 ```
 
-## License
+## Licence
 
-The MIT License (MIT). Please see [License File](https://github.com/ginocampra/laravel-leaflet/blob/master/LICENSE.md) for more information.
+The MIT License (MIT). Veuillez consulter [License File](https://github.com/ginocampra/laravel-leaflet/blob/master/LICENSE.md) pour plus d'informations.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ginocampra\LaravelLeaflet\View\Components;
+namespace IJIDeals\Laraleaflet\View\Components;
 
 use Illuminate\View\Component;
 
@@ -38,7 +38,7 @@ class LaravelMap extends Component
      */
     public function render()
     {
-        return view('LaravelLeaflet::components.laravel-map',[
+        return view('LaraLeaflet::components.laravel-map',[
             'title' => $this->title,
             'initialMarkers' => $this->initialMarkers,
             'initialPolygons' => $this->initialPolygons,

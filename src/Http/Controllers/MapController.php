@@ -1,8 +1,10 @@
 <?php
 
-namespace Ginocampra\LaravelLeaflet\Http\Controllers;
+namespace IJIDeals\Laraleaflet\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 
 class MapController extends Controller
@@ -63,7 +65,31 @@ class MapController extends Controller
         ];
         $title = 'Initial Map';
 
-        return view('LaravelLeaflet::map', compact('options','title','initialMarkers','initialPolygons','initialPolylines','initialRectangles','initialCircles'));
+        return view('LaraLeaflet::map', compact('options','title','initialMarkers','initialPolygons','initialPolylines','initialRectangles','initialCircles'));
     }
 
+    public function geocode(Request $request)
+    {
+        $address = $request->input('address');
+        $response = Http::get('https://nominatim.openstreetmap.org/search', [
+            'q' => $address,
+            'format' => 'json',
+            'limit' => 1
+        ]);
+        
+        return $response->json();
+    }
+
+    public function calculateRoute(Request $request)
+    {
+        $start = $request->input('start');
+        $end = $request->input('end');
+        
+        $response = Http::get('http://router.project-osrm.org/route/v1/driving/'.$start['lng'].','.$start['lat'].';'.$end['lng'].','.$end['lat'], [
+            'overview' => 'full',
+            'geometries' => 'geojson'
+        ]);
+        
+        return $response->json();
+    }
 }
